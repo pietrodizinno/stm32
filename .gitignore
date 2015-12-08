@@ -23,6 +23,13 @@
 *.lib
 *.axfy
 *.htm
+*.bak
+*.dep
+*.d
+*.nlp
+*.crf
+*.iex
+*.map
 
 # Executables
 *.exe
