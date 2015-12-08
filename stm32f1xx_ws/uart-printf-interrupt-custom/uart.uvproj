@@ -364,7 +364,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_VL</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\CoreSupport;..\..\Libraries\CMSIS\CM3;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\..\Libraries\STM32F10x_StdPeriph_Driver\src;..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x;..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm;..\uart-printf-interrupt-custom;..\..\mylib</IncludePath>
+              <IncludePath>..\..\Libraries\CMSIS\CM3\DeviceSupport\CoreSupport;..\..\Libraries\CMSIS\CM3;..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\..\Libraries\STM32F10x_StdPeriph_Driver\src;..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x;..\..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm;..\uart-printf-interrupt-custom;..\..\mylib;..\..\Libraries\mylib</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -445,7 +445,7 @@
             <File>
               <FileName>MyUart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\mylib\MyUart.c</FilePath>
+              <FilePath>..\..\Libraries\mylib\MyUart.c</FilePath>
             </File>
           </Files>
         </Group>
