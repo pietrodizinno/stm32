@@ -30,6 +30,7 @@
 *.crf
 *.iex
 *.map
+*.i
 
 # Executables
 *.exe
