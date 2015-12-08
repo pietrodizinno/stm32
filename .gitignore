@@ -21,12 +21,12 @@
 *.la
 *.a
 *.lib
-*.axfy
+*.axf
 *.htm
 *.bak
 *.dep
 *.d
-*.nlp
+*.lnp
 *.crf
 *.iex
 *.map
