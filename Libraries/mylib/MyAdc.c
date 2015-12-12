@@ -12,6 +12,9 @@ void initAdc(GPIO_TypeDef* GPIOx,uint16_t GPIO_Pin,__IO uint16_t* ConvertedValue
 	if(GPIOx == GPIOA){
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1 | RCC_APB2Periph_GPIOA, ENABLE);
 	}
+	if(GPIOx == GPIOB){
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1 | RCC_APB2Periph_GPIOB, ENABLE);
+	}
 	/* Configure GPIO_Pin  as analog input -------------------------*/
 	
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin;
@@ -45,7 +48,7 @@ void initAdc(GPIO_TypeDef* GPIOx,uint16_t GPIO_Pin,__IO uint16_t* ConvertedValue
 	
 	/* ADC1 regular channel15 configuration */ 
 	/*CAN CHHINH SUA CHANEL LAI CHO TUONG UNG VOI PIN DA CHON*/
-  ADC_RegularChannelConfig(ADC1, ADC_Channel_15, 1, ADC_SampleTime_55Cycles5);
+  ADC_RegularChannelConfig(ADC1, ADC_Channel_5, 1, ADC_SampleTime_55Cycles5);
 	/* Enable ADC1 DMA */
   ADC_DMACmd(ADC1, ENABLE);
 	/* Enable ADC1 */

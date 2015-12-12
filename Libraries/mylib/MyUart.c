@@ -25,12 +25,12 @@ void uartInit(USART_TypeDef* USARTx, unsigned int baud){
 			USART_InitStructure.USART_StopBits = USART_StopBits_1;
 			USART_InitStructure.USART_Parity = USART_Parity_No;
 			USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-			USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+			USART_InitStructure.USART_Mode = USART_Mode_Tx;
 			/* Configure USART1 */
 			USART_Init(USART1, &USART_InitStructure);
 		
 			/* Enable USART1 Receive and Transmit interrupts */
-			USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+			//USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
 			//USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
 			/* Enable the USART1 */
 			USART_Cmd(USART1, ENABLE);
@@ -89,11 +89,12 @@ short getString(USART_TypeDef* USARTx ,char *str, short *count)
 
 void sendDatas(USART_TypeDef* USARTx, char* datas,  int length){
 	uint16_t x;
-	for(uint16_t i = 0; i < length; i++ )
+	int i =0;
+	for(i = 0; i < length; i++ ){
 	   x = (uint16_t)*(datas+i);
 		SendUSART(USARTx,x);
+	}
 }
-
 
 
 
