@@ -1,15 +1,19 @@
 #include <stdio.h>
 #include "MyUart.h"
 #include "stm32f10x_usart.h"
+#include "platform_config.h"
 
 void uartInit(USART_TypeDef* USARTx, unsigned int baud){
 	USART_InitTypeDef USART_InitStructure;
 	GPIO_InitTypeDef GPIO_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 	if(USARTx == USART1){
-			RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE); 
-			RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-			// GPIO Config
+			/* Enable GPIO clock */ 
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|  RCC_APB2Periph_AFIO, ENABLE);
+			/* Enable USARTy Clock */
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+
+			
 			/* Configure USART Tx as alternate function  */
 			GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
 			GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
@@ -39,11 +43,51 @@ void uartInit(USART_TypeDef* USARTx, unsigned int baud){
 			NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
   
 			/* Enable the USART1 Interrupt */
-			NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+			//NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+			//NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+			//NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+			//NVIC_Init(&NVIC_InitStructure); 
+		}
+	if(USARTx == USART2){
+			/* Enable GPIO clock */ 
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|  RCC_APB2Periph_AFIO, ENABLE);
+			/* Enable USARTy Clock */
+			RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+			// GPIO Config
+			/* Configure USART Tx as alternate function  */
+			GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+			GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+			GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+			GPIO_Init(GPIOA, &GPIO_InitStructure);
+			/* Configure USART Rx as alternate function  */
+			GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+			GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
+			GPIO_Init(GPIOA, &GPIO_InitStructure);
+			// UART Config
+			USART_InitStructure.USART_BaudRate = baud;
+			USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+			USART_InitStructure.USART_StopBits = USART_StopBits_1;
+			USART_InitStructure.USART_Parity = USART_Parity_No;
+			USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+			USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
+			/* Configure USART2 */
+			USART_Init(USART2, &USART_InitStructure);
+		
+			/* Enable USART2 Receive and Transmit interrupts */
+			USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
+			//USART_ITConfig(USART2, USART_IT_TXE, ENABLE);
+			/* Enable the USART2 */
+			USART_Cmd(USART2, ENABLE);
+			// Interrupt COnfig
+			/* Configure the NVIC Preemption Priority Bits */  
+			NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
+  
+			/* Enable the USART2 Interrupt */
+			NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
 			NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 			NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-			NVIC_Init(&NVIC_InitStructure); 
-		}
+			NVIC_Init(&NVIC_InitStructure);
+}
 }
 void SendUSART(USART_TypeDef* USARTx,uint16_t ch){
 	USART_SendData(USARTx, (uint8_t) ch);

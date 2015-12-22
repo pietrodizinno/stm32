@@ -169,19 +169,46 @@ void USART1_IRQHandler(void)
   
  
 }
+void USART2_IRQHandler(void)
+{
+	extern int count;
+	extern uint16_t dist[2];
+	extern char check;
+	extern int khoangcach;
+	extern int nhiet_do;
+	extern uint16_t mode;
+	
+  if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)
+  {
+    /* Read one byte from the receive data register */
+     //check = getString(USART2,&RxBuffer[0],&rxLength);
+		// Tang Bien Dem len truoc khi nhan data
+		count++;
+		dist[count] = USART_ReceiveData(USART2);
+		if(count == 1 ){ // Kiem tra neu la lan nhan data thu 2
+			count = -1;
+			khoangcach = dist[0]*256 + dist[1];
+			dist[0] = 0;
+			dist[1] = 0;
+		}	
+  }
+  
+ 
+}
 void TIM4_IRQHandler(void)
 {
 extern 	char ready;
 static uint32_t time=0;
    if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)
    {
-    if(++time>800)
+    if(++time>1000)
     {
 		 
       time = 0;
 			GPIO_ResetBits(GPIOD,GPIO_Pin_10);
 			ready = 1;
     }
+		
    TIM_ClearITPendingBit(TIM4, TIM_IT_Update); 
    }
   }

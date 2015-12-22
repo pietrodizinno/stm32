@@ -52,6 +52,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "platform_config.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
