@@ -93,13 +93,13 @@ int main(void){
 	
 	
 	GPIO_SetBits(GPIOD,GPIO_Pin_9);
-	printf("ThanhLe_ssid\n");
+	printf("Robotbase_ssid\n");
 	for (delay=0; delay<0xFFFFF; delay++);
 	GPIO_ResetBits(GPIOD,GPIO_Pin_9);
 	for (delay=0; delay<0xFFFFF; delay++);
 	
 	GPIO_SetBits(GPIOD,GPIO_Pin_9);
-	printf("250508th@nh_pass\n");
+	printf("Do@nket201234_pass\n");
 	for (delay=0; delay<0xFFFFF; delay++);
 	GPIO_ResetBits(GPIOD,GPIO_Pin_9);
 	for (delay=0; delay<0xFFFFF; delay++);
@@ -109,7 +109,8 @@ int main(void){
 	for (delay=0; delay<0xFFFFF; delay++);
 	GPIO_ResetBits(GPIOD,GPIO_Pin_9);
 	for (delay=0; delay<0xFFFFF; delay++);
-	
+	for (delay=0; delay<0xFFFFF; delay++);
+	for (delay=0; delay<0xFFFFF; delay++);
 	GPIO_SetBits(GPIOD,GPIO_Pin_9);
 	printf("status\n");
 	for (delay=0; delay<0xFFFFF; delay++);
@@ -135,6 +136,7 @@ int main(void){
 	for (delay=0; delay<0xFFFFF; delay++);
 	
 	GPIO_SetBits(GPIOD,GPIO_Pin_9);
+	printf("file.close('uart.lua')\n");
 	printf("dofile('doan.lua')\n");
 	for (delay=0; delay<0xFFFFF; delay++);
 	GPIO_ResetBits(GPIOD,GPIO_Pin_9);
