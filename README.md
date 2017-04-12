@@ -1,1 +1,1 @@
-![alt tag](http://www.waveshare.com/img/devkit/general/connector-layout-20pin_h220.jpg)
+![alt tag](https://images-na.ssl-images-amazon.com/images/I/41F2am8Pr6L.jpg)
